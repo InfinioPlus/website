@@ -4,16 +4,145 @@
     <meta charset="UTF-8">
     <title>Infinio Plus</title>
     <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+    <link href="assets/css/main.css" rel="stylesheet">
+    <link href="assets/css/jquery.fullPage.css" rel="stylesheet">
+    <style>
+    @keyframes move-twink-back {
+        from {background-position:0 0;}
+        to {background-position:-10000px 5000px;}
+    }
+    @-webkit-keyframes move-twink-back {
+        from {background-position:0 0;}
+        to {background-position:-10000px 5000px;}
+    }
+    @-moz-keyframes move-twink-back {
+        from {background-position:0 0;}
+        to {background-position:-10000px 5000px;}
+    }
+    @-ms-keyframes move-twink-back {
+        from {background-position:0 0;}
+        to {background-position:-10000px 5000px;}
+    }
+
+    @keyframes move-clouds-back {
+        from {background-position:0 0;}
+        to {background-position:10000px 0;}
+    }
+    @-webkit-keyframes move-clouds-back {
+        from {background-position:0 0;}
+        to {background-position:10000px 0;}
+    }
+    @-moz-keyframes move-clouds-back {
+        from {background-position:0 0;}
+        to {background-position:10000px 0;}
+    }
+    @-ms-keyframes move-clouds-back {
+        from {background-position: 0;}
+        to {background-position:10000px 0;}
+    }
+
+    .stars, .twinkling, .clouds {
+      position:absolute;
+      top:0;
+      left:0;
+      right:0;
+      bottom:0;
+      width:100vw;
+      height:100vh;
+      display:block;
+    }
+
+    .stars {
+      background:#000 url(assets/img/stars.png) repeat top center;
+      z-index:-2;
+    }
+
+    .twinkling{
+      background:transparent url(assets/img/twinkling.png) repeat top center;
+      z-index:-1;
+
+      -moz-animation:move-twink-back 200s linear infinite;
+      -ms-animation:move-twink-back 200s linear infinite;
+      -o-animation:move-twink-back 200s linear infinite;
+      -webkit-animation:move-twink-back 200s linear infinite;
+      animation:move-twink-back 200s linear infinite;
+    }
+    </style>
 </head>
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            <div class="jumbotron text-center">
-                <h1>Hello world</h1>
+   <div id="fullpage">
+            <div class="section" id="section0">
+                <div class="stars"></div>
+	            <div class="twinkling"></div>
+                <div class="intro text-center">
+                    <img src="assets/img/logo.png" style="width:25%;">
+                </div>
+            </div>
+            <div class="section" id="section1">
+            </div>
+            <div class="section" id="section2">
+            </div>
+            <div class="section" id="section3">
+            </div>
+            <div class="section" id="section4">
+            </div>
+            <div class="section" id="section5">
+            </div>
+            <div class="section" id="section5">
             </div>
         </div>
-    </div>
-    <script src="assets\js\jquery.js"></script>
-    <script src="assets\js\bootstrap.min.js"></script>
+    
+    <script src="assets/js/jquery.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/js/jquery.fullPage.min.js"></script>
+    <script src="assets/js/jquery.easings.min.js"></script>
+    <script src="assets/js/jquery.slimscroll.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#fullpage').fullpage({
+                menu: false,
+                lockAnchors: false,
+                anchors:['one', 'two', 'three', 'four', 'five', 'six','seven'],
+                sectionsColor: ['', '#fff', '#000','#fff','#fff','#fff','#fff'],
+                navigation: false,
+                navigationPosition: 'right',
+                navigationTooltips: ['firstSlide', 'secondSlide', 'secondSlide', 'secondSlide', 'secondSlide', 'secondSlide', 'secondSlide'],
+                showActiveTooltip: false,
+                slidesNavigation: true,
+                slidesNavPosition: 'bottom',
+                css3: true,
+                scrollingSpeed: 500,
+                autoScrolling: true,
+                fitToSection: true,
+                scrollBar: false,
+                easing: 'easeInOutCubic',
+                easingcss3: 'ease',
+                loopHorizontal: true,
+                continuousVertical: true,
+                scrollOverflow: false,
+                touchSensitivity: 15,
+                normalScrollElementTouchThreshold: 5,
+                keyboardScrolling: true,
+                animateAnchor: true,
+                onLeave: function(index, nextIndex, direction){},
+                afterLoad: function(anchorLink, index){},
+                afterRender: function(){
+                    $('#myVideo').get(0).play();
+                },
+                afterResize: function(){},
+                afterSlideLoad: function(anchorLink, index, slideAnchor, slideIndex){},
+                onSlideLeave: function(anchorLink, index, slideIndex, direction, nextSlideIndex){}
+            });
+            $('#imgsus').hover(
+                function() {
+                    $('#section2').removeClass("img1");
+                    $('#section2').addClass("img2");
+                },function() {
+                    $('#section2').addClass("img1");
+                    $('#section2').removeClass("img2");
+                }
+            );
+        });
+    </script>
 </body>
 </html>
